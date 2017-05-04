@@ -135,9 +135,10 @@ Settings.SettingsTab = class extends UI.VBox {
 
   _createSelectSetting(name, options, setting) {
     var p = createElement('p');
-    p.createChild('label').textContent = name;
+    var label = p.createChild('label');
+    label.createChild('span').textContent = name;
 
-    var select = p.createChild('select', 'chrome-select');
+    var select = label.createChild('select', 'chrome-select');
     var settingValue = setting.get();
 
     for (var i = 0; i < options.length; ++i) {
@@ -166,7 +167,7 @@ Settings.GenericSettingsTab = class extends Settings.SettingsTab {
 
     /** @const */
     var explicitSectionOrder =
-        ['', 'Appearance', 'Elements', 'Sources', 'Network', 'Profiler', 'Console', 'Extensions'];
+        ['Appearance', 'Elements', 'Sources', 'Network', 'Profiler', 'Console', 'Extensions'];
     /** @type {!Map<string, !Element>} */
     this._nameToSection = new Map();
     /** @type {!Map<string, !Element>} */

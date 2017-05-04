@@ -378,6 +378,10 @@ QuickOpen.FilteredListWidget = class extends UI.VBox {
       var workDone = 0;
 
       for (var i = fromIndex; i < this._provider.itemCount() && workDone < maxWorkItems; ++i) {
+        if (Common.moduleSetting('excludeBase64').get('value') && this._provider.itemKeyAt(i).indexOf('data:text/css;base64') === 0){
+          continue;
+        }
+
         // Filter out non-matching items quickly.
         if (filterRegex && !filterRegex.test(this._provider.itemKeyAt(i)))
           continue;

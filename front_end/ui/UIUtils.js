@@ -1324,11 +1324,14 @@ UI.CheckboxLabel = class extends HTMLLabelElement {
     UI.CheckboxLabel._lastId = (UI.CheckboxLabel._lastId || 0) + 1;
     var id = 'ui-checkbox-label' + UI.CheckboxLabel._lastId;
     this._shadowRoot = UI.createShadowRootWithCoreStyles(this, 'ui/checkboxTextLabel.css');
-    this.checkboxElement = /** @type {!HTMLInputElement} */ (this._shadowRoot.createChild('input'));
-    this.checkboxElement.type = 'checkbox';
-    this.checkboxElement.setAttribute('id', id);
     this.textElement = this._shadowRoot.createChild('label', 'dt-checkbox-text');
     this.textElement.setAttribute('for', id);
+    this.titleElement = document.createElement('span');
+    this.textElement.appendChild(this.titleElement);
+    this.checkboxElement = /** @type {!HTMLInputElement} */ document.createElement('input');
+    this.textElement.appendChild(this.checkboxElement);
+    this.checkboxElement.type = 'checkbox';
+    this.checkboxElement.setAttribute('id', id);
     this._shadowRoot.createChild('content');
   }
 
@@ -1344,7 +1347,7 @@ UI.CheckboxLabel = class extends HTMLLabelElement {
     var element = /** @type {!UI.CheckboxLabel} */ (new UI.CheckboxLabel._constructor());
     element.checkboxElement.checked = !!checked;
     if (title !== undefined) {
-      element.textElement.textContent = title;
+      element.titleElement.textContent = title;
       if (subtitle !== undefined)
         element.textElement.createChild('div', 'dt-checkbox-subtitle').textContent = subtitle;
     }

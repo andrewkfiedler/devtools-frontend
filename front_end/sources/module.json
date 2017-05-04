@@ -424,6 +424,14 @@
         {
             "type": "setting",
             "category": "Sources",
+            "title": "Exclude Base64 From QuickOpen",
+            "settingName": "excludeBase64",
+            "settingType": "boolean",
+            "defaultValue": true
+        },
+        {
+            "type": "setting",
+            "category": "Sources",
             "title": "Show whitespace characters:",
             "settingName": "showWhitespacesInEditor",
             "settingType": "enum",
